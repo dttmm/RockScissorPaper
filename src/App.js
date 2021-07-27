@@ -4,6 +4,8 @@ import HandButton from './HandButton';
 import HandIcon from './HandIcon';
 import { compareHand, generateRandomHand } from './utils';
 
+const INITIAL_VALUE = 'rock';
+
 function getResult(me, other) {
   const comparison = compareHand(me, other);
   if (comparison > 0) return '승리';
@@ -13,8 +15,8 @@ function getResult(me, other) {
 
 function App() {
   // hand와 otherHand를 state로 바꾸어 주세요
-  const [hand, setHand] = useState('rock');
-  const [otherHand, setOtherHand] = useState('rock');
+  const [hand, setHand] = useState(INITIAL_VALUE);
+  const [otherHand, setOtherHand] = useState(INITIAL_VALUE);
 
   const handleButtonClick = (nextHand) => {
     // hand의 값을 nextHand 로 바꿔주세요
