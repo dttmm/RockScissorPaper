@@ -14,32 +14,35 @@ function getResult(me, other) {
 }
 
 function App() {
-  // hand와 otherHand를 state로 바꾸어 주세요
   const [hand, setHand] = useState(INITIAL_VALUE);
   const [otherHand, setOtherHand] = useState(INITIAL_VALUE);
+  const [gameHistory, setGameHistory] = useState([]);
 
   const handleButtonClick = (nextHand) => {
-    // hand의 값을 nextHand 로 바꿔주세요
+    const nextOtherHand = generateRandomHand();
+    const nextHistoryItem = getResult(nextHand, nextOtherHand);
     setHand(nextHand);
-    // otherHand의 값을 generateRandomHand()의 리턴 값으로 바꿔주세요
-    setOtherHand(generateRandomHand());
+    setOtherHand(nextOtherHand);
+    // gameHistory에 nextHistoryItem 을 추가해주세요
+    setGameHistory([...gameHistory, nextHistoryItem]);
   };
 
   const handleClearClick = () => {
-    // hand와 otherHand의 값을 'rock' 으로 변경해주세요
-    setHand('rock');
-    setOtherHand('rock');
+    setHand(INITIAL_VALUE);
+    setOtherHand(INITIAL_VALUE);
+    // gameHistory를 비워주세요
+    setGameHistory([]);
   };
 
   return (
     <div>
       <Button onClick={handleClearClick}>처음부터</Button>
-      <p>{getResult(hand, otherHand)}</p>
       <div>
         <HandIcon value={hand} />
         VS
         <HandIcon value={otherHand} />
       </div>
+      <p>승부 기록: {gameHistory.join(', ')}</p>
       <div>
         <HandButton value="rock" onClick={handleButtonClick} />
         <HandButton value="scissor" onClick={handleButtonClick} />
