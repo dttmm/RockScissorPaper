@@ -42,7 +42,6 @@ function App() {
   };
 
   const handleBetChange = (e) => {
-    // 여기에 코드를 작성하세요
     // console.log(e.target.value)
     let num = Number(e.target.value);
     if (num > 9) {
