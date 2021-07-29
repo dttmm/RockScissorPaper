@@ -1,12 +1,11 @@
 import HandIcon from "./HandIcon";
 import backgroundImg from "./assets/purple.svg";
-import "./HandButton.css";
 
 // CSS 파일로 스타일을 적용해주세요
-function HandButton({ value, onClick }) {
+function HandButton({ value, onClick, className = "" }) {
   const handleClick = () => onClick(value);
   return (
-    <button className="HandButton" onClick={handleClick}>
+    <button className={className} onClick={handleClick}>
       <HandIcon className="HandButton-icon" value={value} />
     </button>
   );

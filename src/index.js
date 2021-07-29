@@ -1,16 +1,13 @@
-import { Fragment } from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { Fragment } from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
 ReactDOM.render(
   <>
     <App />
   </>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-
-
-
 
 // import ReactDOM from 'react-dom';
 

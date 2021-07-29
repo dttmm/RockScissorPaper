@@ -2,7 +2,9 @@ import { useState } from "react";
 import Button from "./Button";
 import HandButton from "./HandButton";
 import HandIcon from "./HandIcon";
+import Reset from "./Reset";
 import { compareHand, generateRandomHand } from "./utils";
+import "./App.css";
 
 const INITIAL_VALUE = "rock";
 
@@ -53,30 +55,67 @@ function App() {
   };
 
   return (
-    <div>
-      <Button onClick={handleClearClick}>처음부터</Button>
-      <div>
-        {score} : {otherScore}
+    <div class="App">
+      <h1 class="App-heading">가위바위보</h1>
+      <Reset className="App-reset" onClick={handleClearClick}></Reset>
+
+      <div class="App-scores">
+        <div class="Score">
+          <div class="Score-num">{score}</div>
+          <div class="Score-name">나</div>
+        </div>
+        <div class="App-versus">:</div>
+        <div class="Score">
+          <div class="Score-num">{otherScore}</div>
+          <div class="Score-name">상대</div>
+        </div>
       </div>
-      <div>
-        <HandIcon value={hand} />
-        VS
-        <HandIcon value={otherHand} />
+
+      <div class="Box App-box">
+        <div class="Box-inner">
+          <div class="App-hands">
+            <div class="Hand">
+              <HandIcon className="Hand-icon" value={hand} />
+            </div>
+            <div class="App-versus">VS</div>
+            <div class="Hand">
+              <HandIcon className="Hand-icon" value={otherHand} />
+            </div>
+          </div>
+          <div class="App-bet">
+            <span>배점</span>
+            <input
+              onChange={handleBetChange}
+              type="number"
+              value={bet}
+              min={1}
+              max={9}
+            ></input>
+            <span>배</span>
+          </div>
+          <div class="App-history">
+            <h2>승부기록</h2>
+            <p>{gameHistory.join(", ")}</p>
+          </div>
+        </div>
       </div>
+
       <div>
-        <input
-          onChange={handleBetChange}
-          type="number"
-          value={bet}
-          min={1}
-          max={9}
-        ></input>
-      </div>
-      <p>승부 기록: {gameHistory.join(", ")}</p>
-      <div>
-        <HandButton value="rock" onClick={handleButtonClick} />
-        <HandButton value="scissor" onClick={handleButtonClick} />
-        <HandButton value="paper" onClick={handleButtonClick} />
+        <HandButton
+          className="HandButton"
+          value="rock"
+          onClick={handleButtonClick}
+        />
+        <HandButton
+          className="HandButton"
+          value="scissor"
+          onClick={handleButtonClick}
+        />
+        <HandButton
+          className="HandButton"
+          value="paper"
+          onClick={handleButtonClick}
+        />
       </div>
     </div>
   );
